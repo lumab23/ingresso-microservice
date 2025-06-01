@@ -1,14 +1,13 @@
-# Use a versão mais recente do OpenJDK como base
-FROM eclipse-temurin:22-jdk-alpine
-
-# Definir o diretório de trabalho
+# Build stage
+FROM maven:3.9-eclipse-temurin-22 AS build
 WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-# Copiar o arquivo JAR da aplicação
-COPY target/*.jar app.jar
-
-# Expor a porta que a aplicação usa
+# Run stage
+FROM eclipse-temurin:22-jre-alpine
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-
-# Comando para executar a aplicação
 ENTRYPOINT ["java", "-jar", "app.jar"] 
