@@ -9,6 +9,5 @@ import com.example.ingresso_backend.enums.StatusIngresso;
 public interface IngressoRepository extends MongoRepository<Ingresso, String> {
     List<Ingresso> findByUsuarioId(String usuarioId);
     List<Ingresso> findBySessaoId(String sessaoId);
-    List<Ingresso> findByFilmeId(String filmeId);
     List<Ingresso> findByUsuarioIdAndStatus(String usuarioId, StatusIngresso status);
 }

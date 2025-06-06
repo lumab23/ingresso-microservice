@@ -9,12 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import com.example.ingresso_backend.enums.StatusIngresso;
 
-/**
- * Modelo de Ingresso que mantém apenas referências para outros microserviços
- * filmeId: referência para o microserviço de filmes
- * sessaoId: referência para o microserviço de filmes (onde a sessão é gerenciada)
- * usuarioId: referência para o usuário que comprou o ingresso
- */
+
 @Data
 @Document(collection = "ingressos")
 public class Ingresso {
@@ -22,13 +17,10 @@ public class Ingresso {
     private String id;
     
     @NotNull
-    private String sessaoId; // Referência para a sessão no microserviço de filmes
+    private String sessaoId; 
     
     @NotNull
-    private String filmeId; // Referência para o filme no microserviço de filmes
-    
-    @NotNull
-    private String usuarioId; // Referência para o usuário
+    private String usuarioId; 
     
     private LocalDateTime dataCompra;
     
